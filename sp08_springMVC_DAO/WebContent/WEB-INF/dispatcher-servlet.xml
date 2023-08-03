@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- dispatcher-servlet.xml -->
+	<!-- user 객체 생성, viewResolver(뷰리졸뷰) 설정 -->
+	
+	<context:annotation-config /> 
+
+	<!-- ViewResolver 빈 객체 생성 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value> 
+		</property>
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<context:component-scan base-package="com.model, com.controller" />
+	<!-- bean객체 생성 안해줘도 component가 패키지 돌면서 생성해줌! 수시로 보고있다가 @~ 만나면 엮어준다. <bean class="com.controller.JoinController" /> -->
+
+
+</beans>
