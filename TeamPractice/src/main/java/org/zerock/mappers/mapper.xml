@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper.xml -->
+
+<mapper namespace="user">
+	<insert id="insertUser">
+		insert into users (username, password, authority) values (#{username}, #{password}, #{authority})
+	</insert>
+	<select id="selectUser" resultType="org.zerock.model.UserDTO">
+		select * from users where username=#{username}
+	</select>
+
+
+</mapper>

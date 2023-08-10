@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- userMapper.xml -->
+
+
+<!-- 다른 mapper와 중복 되지 않도록 네임스페이스 기재 -->
+<mapper namespace="user">
+	<insert id="insertUser">
+		insert into member_pr (id, password, name, age, description ) values ( #{id}, #{password}, #{name}, #{age}, #{description} )
+	</insert>
+	<insert id="insertAuth">
+		insert into auth_pr (userid, auth) values ( #{userid}, #{auth} )
+	</insert>
+	<select id="selectUser" resultType="org.kosa.model.dto.UserVO">
+		select * from member_pr where id=#{id}
+	</select>
+	<select id="selectAuthId" resultType="org.kosa.model.dto.AuthVO">
+		select * from auth_pr where userid=#{userid}
+	</select>
+	<select id="mypage" resultType="java.util.Map" >
+		select m.id, m.password, m.name, m.age, m.description, m.regdate, a.auth
+		from member_pr m, auth_pr a
+		where m.id = a.userid and m.id = #{id};
+	</select>
+	<select id="selectAll" resultType="org.kosa.model.dto.UserVO" >
+		select * from member_pr order by id
+	</select>
+	<update id="updateUser">
+		update member_pr set name=#{name}, age=#{age}, description=#{description} where id=#{id}
+	</update>
+	<update id="updateAuth">
+		update auth_pr set auth=#{auth} where userid=#{userid}
+	</update>
+	<delete id="deleteUser">
+		delete from member_pr where id=#{id}
+	</delete>
+	<delete id="deleteAuth">
+		delete from auth_pr where userid=#{userid}
+	</delete>
+
+
+
+</mapper>

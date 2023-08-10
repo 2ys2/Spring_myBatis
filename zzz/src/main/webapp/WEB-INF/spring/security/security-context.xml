@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	
+	xmlns:security="http://www.springframework.org/schema/security"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean id="customLoginSuccessHandler" class="org.kosa.security.service.CustomLoginSuccessHandler" />
+		<bean id="customLoginFailureHandler" class="org.kosa.security.service.CustomLoginFailureHandler" />
+		<bean id="customAccessDeniedHandler" class="org.kosa.security.service.CustomAccessDeniedHandler" />
+		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+		<bean id="customLogoutHandler" class="org.kosa.security.service.CustomLogoutHandler" />
+
+	
+	<!-- auto-config='true' 를 설정한것만으로 기본 로그인페이지/ HTTP 기본인증 / 로그아웃기능등을 제공한다. 
+	use-expressions="true" 는 SpEL 을 사용한다는 의미이다. -->
+	<security:http auto-config="true" use-expressions="true">
+	
+		<security:intercept-url pattern="/getList" access="permitAll"/>
+		<security:intercept-url pattern="/signUpForm" access="isAnonymous()"/>
+		<security:intercept-url pattern="/loginForm" access="isAnonymous()"/>
+		<security:intercept-url pattern="/myPage" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/userDetail" access="hasRole('ROLE_USER')"/>
+		
+		
+		<security:form-login login-page="/login" authentication-failure-handler-ref="customLoginFailureHandler" authentication-success-handler-ref="customLoginSuccessHandler"/>
+		
+		<security:access-denied-handler ref="customAccessDeniedHandler"/>
+		
+		<security:logout logout-url="/logout" success-handler-ref="customLogoutHandler" invalidate-session="true"/>
+		
+	</security:http>
+
+
+<!-- bcryptPasswordEncoder 이용한 암호화 -->
+	<security:authentication-manager>
+
+		<security:authentication-provider user-service-ref="userService">
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+
+	</security:authentication-manager>
+
+   <!-- 로그인 인증을 처리하는 빈 -->
+   <!--  UserAuthenticationService안에 sqlSession을 매개변수로 갖는 생성자 함수가 있어야 한다. -->
+   <bean id="userService" class="org.kosa.security.service.UserAuthenticationService">
+      <constructor-arg name="sqlSession" ref="sqlSession" />
+   </bean>
+
+</beans>
+
