@@ -14,27 +14,31 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSessionTemplate mybatis;
 
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> Mybatis insertBoard() Ìò∏Ï∂ú");	
+		System.out.println("===> Mybatis insertBoard() »£√‚");	
 		mybatis.insert("BoardDAO.insertBoard", vo);
 	}
 
 	public void updateBoard(BoardVO vo) {
-		System.out.println("===> Mybatis updateBoard() Ìò∏Ï∂ú");
+		System.out.println("===> Mybatis updateBoard() »£√‚");
 		mybatis.update("BoardDAO.updateBoard", vo);
 	}
 
 	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> Mybatis deleteBoard() Ìò∏Ï∂ú");
+		System.out.println("===> Mybatis deleteBoard() »£√‚");
 		mybatis.delete("BoardDAO.deleteBoard", vo);
 	}
 
 	public BoardVO getBoard(BoardVO vo) {
-		System.out.println("===> Mybatis getBoard() Ìò∏Ï∂ú");
+		System.out.println("===> Mybatis getBoard() »£√‚");
 		return (BoardVO) mybatis.selectOne("BoardDAO.getBoard", vo);
 	}
 
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		System.out.println("===> Mybatis getBoardList() Ìò∏Ï∂ú");
-		return mybatis.selectList("BoardDAO.getBoardList", vo);
+	public List<BoardVO> getBoardList() {
+		System.out.println("===> Mybatis getBoardList() »£√‚");
+		return mybatis.selectList("BoardDAO.getBoardList");
 	}
+//	public List<BoardVO> getBoardList(BoardVO vo) {
+//		System.out.println("===> Mybatis getBoardList() »£√‚");
+//		return mybatis.selectList("BoardDAO.getBoardList", vo);
+//	}
 }

@@ -10,8 +10,10 @@ public interface BoardDAO {
 	public void updateBoard(BoardVO vo) ;
 
 	public void deleteBoard(BoardVO vo);
+//	public void deleteBoard(int seq);
 
 	public BoardVO getBoard(BoardVO vo) ;
 
-	public List<BoardVO> getBoardList(BoardVO vo) ;
+//	public List<BoardVO> getBoardList(BoardVO vo) ;
+	public List<BoardVO> getBoardList() ;
 }

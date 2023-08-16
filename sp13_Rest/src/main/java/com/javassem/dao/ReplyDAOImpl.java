@@ -14,18 +14,18 @@ public class ReplyDAOImpl implements ReplyDAO{
 	private SqlSessionTemplate mybatis;
 
 	public Integer insertReply(ReplyVO vo) {
-		System.out.println("===> Mybatis insertReply() Ìò∏Ï∂ú");	
+		System.out.println("===> Mybatis insertReply() »£√‚");	
 		return mybatis.insert("ReplyDAO.insertReply", vo);
 	}
 
 	public List<ReplyVO> selectAllReply() {
-		System.out.println("===> Mybatis selectAllReply() Ìò∏Ï∂ú");	
+		System.out.println("===> Mybatis selectAllReply() »£√‚");	
 		return mybatis.selectList("ReplyDAO.selectAllReply");
 	}
 
 	@Override
 	public int deleteReply(String rno) {
-		System.out.println("===> Mybatis deleteReply() Ìò∏Ï∂ú");	
+		System.out.println("===> Mybatis deleteReply() »£√‚");	
 		return mybatis.delete("ReplyDAO.deleteReply", rno);
 	}
 }

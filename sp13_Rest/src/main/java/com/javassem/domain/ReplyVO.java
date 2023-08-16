@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
-	private int rno;			// ëŒ“ê¸€ë²ˆí˜¸
-	private int bno;			// ê²Œì‹œê¸€ë²ˆí˜¸ ( ëŒ“ê¸€ì´ ë‹¬ë¦´ ê²Œì‹œê¸€ )
-	private String reply;		// ëŒ“ê¸€ë‚´ìš©
-	private String replyer;		// ëŒ“ê¸€ì‘ì„±ì
-	private String replydate;	// ëŒ“ê¸€ì‘ì„±ì¼
+	private int rno;			// ´ñ±Û¹øÈ£
+	private int bno;			// °Ô½Ã±Û¹øÈ£ ( ´ñ±ÛÀÌ ´Ş¸± °Ô½Ã±Û )
+	private String reply;		// ´ñ±Û³»¿ë
+	private String replyer;		// ´ñ±ÛÀÛ¼ºÀÚ
+	private String replydate;	// ´ñ±ÛÀÛ¼ºÀÏ
 }

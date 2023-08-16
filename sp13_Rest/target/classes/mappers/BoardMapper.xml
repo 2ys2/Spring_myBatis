@@ -17,8 +17,9 @@
 		]]>
 	</insert>
 	
+	<!-- 한 마디로 XML parser에 의해 해석하지말고 그대로 브라우저에 출력하라는 뜻 -->
 	<update id="updateBoard" parameterType="board">
-		<![CDATA[   <!-- 한 마디로 XML parser에 의해 해석하지말고 그대로 브라우저에 출력하라는 뜻 -->
+		<![CDATA[   
 		UPDATE  rest_board SET
 		TITLE = #{title},
 		CONTENT = #{content}
